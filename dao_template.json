@@ -1,0 +1,7 @@
+{
+	"file" : "Repository",
+	"createLine" : "CompletableFuture<Entity> createEntity(Context context, Entity entity);", 
+	"getLine" : "CompletableFuture<Entity> getEntity(Context context, Query);",
+	"updateLine" : "CompletableFuture<Void> updateEntity(Context context, Query, Update);",
+	"deleteLine" : "CompletableFuture<Void> deleteEntity(Context context, Query);"
+}

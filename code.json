@@ -1,0 +1,23 @@
+{
+	"package" : "playerid.com.email",
+	"entity" : {
+		"name" : "actionUrl",
+		"fields" : {
+			"idDomainId" : {
+				"type" : "ObjectId",
+				"refed" : ["response"]
+			},
+			"link" : {
+				"type" : "String",
+				"refed" : ["response"]
+			}
+		}
+	},
+	"methods": {
+		"get" : ["idDomainId", "response"],
+		"delete" : ["idDomainId"],
+		"update" : [{
+			"query" : "idDomainId"
+			}]
+	}
+}
