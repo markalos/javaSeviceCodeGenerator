@@ -1,6 +1,7 @@
 import utils
 from ModelGenerator import ModelGenerator
 from DaoInterface import DaoInterface
+from templateUtils import getInterfaceImpl
 
 def main():
 	codeFileName = 'code.json'
@@ -11,6 +12,11 @@ def main():
 	models = model.generate()
 
 	DaoInterface(code, models, 'dao_template.json').generateCode()
+
+	template = utils.loadJson('dao_impl_template.json')
+	itemplate = getInterfaceImpl(template)
+	print(template)
+	print(itemplate)
 
 
 
