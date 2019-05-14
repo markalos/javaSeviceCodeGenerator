@@ -2,8 +2,9 @@
 	"file" : "Repository",
 	"eqOne" : "eq(\"field\", Field)",
 	"eqMany" : "and(eqOnes)",
-	"createLine" : "CompletableFuture<Entity> create(Context context, Entity entity);", 
-	"getLine" : "CompletableFuture<Entity> get(Context context, Query);",
-	"updateLine" : "CompletableFuture<Void> update(Context context, Query, Update);",
-	"deleteLine" : "CompletableFuture<Void> delete(Context context, Query);"
+	"declareLine" : "var updateMap = Map.of({});",
+	"createLine" : "CompletableFuture<Entity> create(Context context, Entity entity) {\ninsert(entity);\n}",
+	"getLine" : "CompletableFuture<Entity> get(Context context, Query) {\nvar filter = QueryOp;\nfind(filter);\n}",
+	"updateLine" : "CompletableFuture<Void> update(Context context, Query, Update) {\nvar queryFilter = QueryOp;\nUpdateDeclare\nvar updateFilter = new Document(\"$set\", UpdateMap);\nupdate(queryFilter, updateFilter);\n}",
+	"deleteLine" : "CompletableFuture<Void> delete(Context context, Query) {\nvar filter = QueryOp;\ndelete(filter);\n}"
 }

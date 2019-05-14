@@ -118,9 +118,5 @@ class Interface(object):
 	def generateQueryOp(self, param):
 		return ""
 
-		
-		
-
-
-
-
+	def generateUpdateCode(self, param) :
+		return ""

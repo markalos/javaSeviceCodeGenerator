@@ -32,7 +32,7 @@ class Interface(object):
 
 	def generateQueryOp(self, param):
 		template = self.template
-		
+
 		if self.inModels(param):
 			return self.eqOpForModel(param)
 		else :
@@ -43,7 +43,7 @@ class Interface(object):
 			return template['eqMany'].replace('eqOnes', queryOp)
 
 	def updateCodeForField(self, param):
-		return 'var updateMap = Map.of({});'.format(self.mapCodeForField(param))
+		return self.template['declareLine'].format(self.mapCodeForField(param))
 
 	def mapCodeForField(self, param):
 		return '"{}", {}'.format(param, param)
@@ -51,17 +51,34 @@ class Interface(object):
 	def updateCodeForFields(self, param):
 		code = [self.mapCodeForField(p) for p in param]
 		code = ',\n'.join(code)
-		code = 'var updateMap = Map.of({});'.format(code)
+		code = self.template['declareLine'].format(code)
 		return code
 
+	def getFields(self, queryParam):
+		if self.inModels(queryParam) :
+			return [q['name'] for q in self.getModel(queryParam)['fields']]
+		elif isinstance(queryParam, str):
+			return [queryParam]
+		else :
+			return queryParam
+
 	def updateCodeForModel(self, modelName, queryParam):
-		pass
+		skipSet = set("id")
+		skipSet.update(self.getFields(queryParam))
+		declareLine = self.template['declareLine']
+		prefix = '{}.'.format(modelName)
+
+		modelFields = self.getModel(modelName)['fields']
+		mapFields = ['"{}", {}{}'.format(f['name'], prefix, self.generateGetter(f))
+		for f in modelFields]
+		return declareLine.format(', '.join(mapFields))
+
 
 	def generateUpdateCode(self, param, queryParam):
 		template = self.template
-		
+
 		if self.inModels(param):
-			return self.eqOpForModel(param)
+			return self.updateCodeForModel(param)
 		else :
 			if isinstance(param, str):
 				return self.updateCodeForField(param)
