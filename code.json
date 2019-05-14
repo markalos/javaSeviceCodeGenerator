@@ -9,7 +9,7 @@
 			},
 			"link" : {
 				"type" : "String",
-				"refed" : ["response"]
+				"refed" : ["actionUrlResponse"]
 			}
 		}
 	},
