@@ -1,8 +1,9 @@
 {
-	"file" : "Repository",
+	"file" : "EntityRepository",
 	"eqOne" : "eq(\"field\", Field)",
 	"eqMany" : "and(eqOnes)",
 	"declareLine" : "var updateMap = Map.of({});",
+	"start": "pulic class EntityRepository extend BasicRepository<Entity> {",
 	"createLine" : "CompletableFuture<Entity> create(Context context, Entity entity) {\ninsert(entity);\n}",
 	"getLine" : "CompletableFuture<Entity> get(Context context, Query) {\nvar filter = QueryOp;\nfind(filter);\n}",
 	"updateLine" : "CompletableFuture<Void> update(Context context, Query, Update) {\nvar queryFilter = QueryOp;\nUpdateDeclare\nvar updateFilter = new Document(\"$set\", UpdateMap);\nupdate(queryFilter, updateFilter);\n}",
