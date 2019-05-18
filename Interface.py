@@ -83,7 +83,10 @@ class Interface(object):
 		params = self.code['methods'][getOrDel]
 		for param in params:
 			query = self.generateFormalParam(param)
-			lines.append(template.replace('Query', query))
+			line = template.replace('Query', query)
+			queryOp = self.generateQueryOp(param)
+			line = line.replace('QueryOp', queryOp)
+			lines.append(line)
 		return lines
 
 	def updateLines(self):

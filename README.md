@@ -1,18 +1,10 @@
 # javaSeviceCodeGenerator
-{
-  "idDomain" : idDomainId of the SMTP setting
-  "port" : 587
-  "address": domain.com
-  "userName": xxxx
-  "password": ****
-  "enabled": true | false
-  "mode": STARTTLS //security mode
 
-    private int port;
-    private String host;
-    private String address;
-    private String userName;
-    private String password;
+haproxy -f test.conf -p 20761 -x tcp4-connect:127.0.0.1:9199 -sf $(cat 20761)
+haproxy -f test.conf -p /tmp/haproxy-1.9-lb.pid -x 127.0.0.1:9199 -sf $(cat /tmp/hapee-1.9-lb.pid)
+${APP_NAME}
+${DISPLAY_NAME}
+${LINK}
+${NEW_EMAIL}
 
-    private boolean enabled = true;
-    private SMTPSecurityMode mode = SMTPSecurityMode.STARTTLS;
+${EMAIL}

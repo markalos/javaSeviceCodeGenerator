@@ -1,8 +1,7 @@
 import utils
 from Interface import Interface
 
-class Interface(object):
-	"""docstring for Interface"""
+class InterfaceImpl(object):
 	def __init__(self, code, models, templateFile):
 		super().__init__(code, models)
 		self.code = code
