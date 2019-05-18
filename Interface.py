@@ -42,8 +42,8 @@ class Interface(object):
 		return '\n'.join(lines)
 
 	def incarnateEntity(self, template):
-		template = template.replace('Entity', self.EntityName)
-		template = template.replace('entity', self.entityName)
+		template = template.replace('{Entity}', self.EntityName)
+		template = template.replace('{entity}', self.entityName)
 		return template
 
 	def getMethodsLines(self):
@@ -72,7 +72,7 @@ class Interface(object):
 
 	def generateCode(self):
 		utils.writeToFile(
-			'{}{}.java'.format(self.EntityName,self.template['file']),
+			self.template['file'].format(self.EntityName),
 			self.getCode()
 			)
 
@@ -83,9 +83,10 @@ class Interface(object):
 		params = self.code['methods'][getOrDel]
 		for param in params:
 			query = self.generateFormalParam(param)
-			line = template.replace('Query', query)
+			line = template.replace('{QueryParam}', query)
 			queryOp = self.generateQueryOp(param)
-			line = line.replace('QueryOp', queryOp)
+			print(queryOp, getOrDel)
+			line = line.replace('{QueryOp}', queryOp)
 			lines.append(line)
 		return lines
 
@@ -97,21 +98,25 @@ class Interface(object):
 
 		for param in params:
 			query = self.generateFormalParam(param['query'])
+			queryOp = self.generateQueryOp(param['query'])
 			if 'set' not in param:
-				update = self.entityName
+				updateParam = self.entityName
 			else :
-				update = param['set']
-			update = self.generateFormalParam(update)
+				updateParam = param['set']
+			update = self.generateFormalParam(updateParam)
+			updateDeclare = self.generateUpdateCode(updateParam,param['query'])
 			lines.append(
-				template.replace('Query', query).replace('Update', update)
+				template.replace('{QueryParam}', query).replace('{UpdateParam}', update).
+					replace('{UpdateDeclare}', updateDeclare).
+					replace('{QueryOp}', queryOp)
 				)
 		return lines
 
 	def generateGetter(self, field):
 		if field['type'] in ['Boolean', 'boolean']:
-			template = 'is{}'
+			template = 'is{}()'
 		else :
-			template = 'get{}'
+			template = 'get{}()'
 		return template.format(utils.upperFirst(field['name']))
 
 	def generateSetter(self, field):

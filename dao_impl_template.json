@@ -1,11 +1,11 @@
 {
-	"file" : "EntityRepository",
+	"file" : "{}RepositoryImpl.java",
 	"eqOne" : "eq(\"field\", Field)",
 	"eqMany" : "and(eqOnes)",
 	"declareLine" : "var updateMap = Map.of({});",
-	"start": "pulic class EntityRepository extend BasicRepository<Entity> {",
-	"createLine" : "CompletableFuture<Entity> create(Context context, Entity entity) {\ninsert(entity);\n}",
-	"getLine" : "CompletableFuture<Entity> get(Context context, Query) {\nvar filter = QueryOp;\nfind(filter);\n}",
-	"updateLine" : "CompletableFuture<Void> update(Context context, Query, Update) {\nvar queryFilter = QueryOp;\nUpdateDeclare\nvar updateFilter = new Document(\"$set\", UpdateMap);\nupdate(queryFilter, updateFilter);\n}",
-	"deleteLine" : "CompletableFuture<Void> delete(Context context, Query) {\nvar filter = QueryOp;\ndelete(filter);\n}"
+	"start": "pulic class {Entity}Repository extend BasicRepository<{Entity}> {",
+	"createLine" : "\tCompletableFuture<{Entity}> create(Context context, {Entity} {entity}) {\n\t\tinsert({entity});\n\t}",
+	"getLine" : "\tCompletableFuture<Entity> get(Context context, {QueryParam}) {\n\t\tvar filter = {QueryOp};\n\t\tfind(filter);\n\t}",
+	"updateLine" : "\tCompletableFuture<Void> update(Context context, {QueryParam}, {UpdateParam}) {\n\t\tvar queryFilter = {QueryOp};\n\t\t{UpdateDeclare}\n\t\tvar updateFilter = new Document(\"$set\", UpdateMap);\n\t\tupdate(queryFilter, updateFilter);\n\t}",
+	"deleteLine" : "\tCompletableFuture<Void> delete(Context context, {QueryParam}) {\n\t\tvar filter = {QueryOp};\n\t\tdelete(filter);\n\t}"
 }

@@ -1,7 +1,7 @@
 import utils
 from Interface import Interface
 
-class InterfaceImpl(object):
+class InterfaceImpl(Interface):
 	def __init__(self, code, models, templateFile):
 		super().__init__(code, models)
 		self.code = code
@@ -69,7 +69,7 @@ class InterfaceImpl(object):
 
 		modelFields = self.getModel(modelName)['fields']
 		mapFields = ['"{}", {}{}'.format(f['name'], prefix, self.generateGetter(f))
-		for f in modelFields]
+		for f in modelFields if f['name'] not in skipSet]
 		return declareLine.format(', '.join(mapFields))
 
 
@@ -77,7 +77,7 @@ class InterfaceImpl(object):
 		template = self.template
 
 		if self.inModels(param):
-			return self.updateCodeForModel(param)
+			return self.updateCodeForModel(param, queryParam)
 		else :
 			if isinstance(param, str):
 				return self.updateCodeForField(param)
