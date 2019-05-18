@@ -1,0 +1,11 @@
+{
+	"file" : "{}ServiceImpl.java",
+	"eqOne" : "eq(\"field\", Field)",
+	"eqMany" : "and(eqOnes)",
+	"declareLine" : "var updateMap = Map.of({});",
+	"start": "pulic class {Entity}ServiceImpl extend BasicService<{Entity}> implements {Entity}Service {",
+	"createLine" : "\tCompletableFuture<{Entity}> create(Context context, {Entity} {entity}) {\n\t\t{entity}Repository.insert({entity});\n\t}",
+	"getLine" : "\tCompletableFuture<{Entity}> get(Context context, {QueryParam}) {\n\t\t{entity}Repository.get(context, {QueryParam});\n\t}",
+	"updateLine" : "\tCompletableFuture<Void> update(Context context, {QueryParam}, {UpdateParam}) {\n\t\t{entity}Repository.update(context, {QueryParam}, {UpdateParam});\n\t}",
+	"deleteLine" : "\tCompletableFuture<Void> delete(Context context, {QueryParam}) {\n\t\t{entity}Repository.delete(context, {QueryParam});\n\t}"
+}

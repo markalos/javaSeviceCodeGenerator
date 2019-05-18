@@ -10,6 +10,10 @@
 			"link" : {
 				"type" : "String",
 				"refed" : ["actionUrlResponse"]
+			},
+			"code" : {
+				"type" : "Integer",
+				"refed" : ["response"]
 			}
 		}
 	},

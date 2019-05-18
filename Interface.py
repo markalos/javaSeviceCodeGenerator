@@ -71,6 +71,7 @@ class Interface(object):
 		return res
 
 	def generateCode(self):
+		print(self.template['file'].format(self.EntityName))
 		utils.writeToFile(
 			self.template['file'].format(self.EntityName),
 			self.getCode()
@@ -126,5 +127,5 @@ class Interface(object):
 	def generateQueryOp(self, param):
 		return ""
 
-	def generateUpdateCode(self, param) :
+	def generateUpdateCode(self, param, queryParam) :
 		return ""

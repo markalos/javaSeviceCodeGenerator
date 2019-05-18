@@ -2,12 +2,11 @@ import utils
 from Interface import Interface
 
 class InterfaceImpl(Interface):
-	def __init__(self, code, models, templateFile):
+	def __init__(self, code, models, template):
 		super().__init__(code, models)
 		self.code = code
 		self.models = models
-		self.templateFile = templateFile
-		self.template = utils.loadJson(templateFile)
+		self.template = template
 
 	def eqOpForField(self, param):
 		eqOne = self.template['eqOne']
@@ -26,7 +25,7 @@ class InterfaceImpl(Interface):
 			return queryOp[0]
 		else :
 			queryOp = ',\n'.join(queryOp)
-			self.template['eqMany'].replace('eqOnes', queryOp)
+			return self.template['eqMany'].replace('eqOnes', queryOp)
 
 
 	def generateQueryOp(self, param):

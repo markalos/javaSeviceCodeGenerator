@@ -1,10 +1,9 @@
-import utils
 from Interface import Interface
 
 class DaoInterface(Interface):
-	def __init__(self, code, models, templateFile):
+	def __init__(self, code, models, template):
 		super().__init__(code, models)
-		self.template = utils.loadJson(templateFile)
+		self.template = template
 
 
 

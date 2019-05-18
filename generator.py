@@ -4,7 +4,8 @@ from DaoInterface import DaoInterface
 from InterfaceImpl import InterfaceImpl
 from templateUtils import getInterfaceImpl
 
-def main():
+
+def generateCode(fname : str):
 	codeFileName = 'code.json'
 	code = utils.loadJson(codeFileName)
 	package = code['package']
@@ -12,10 +13,18 @@ def main():
 	model = ModelGenerator(package, code['entity'])
 	models = model.generate()
 
-	InterfaceImpl(code, models, 'dao_impl_template.json').generateCode()
+	template = utils.loadJson(fname)
 
-	#template = utils.loadJson('dao_impl_template.json')
-	#itemplate = getInterfaceImpl(template)
+	InterfaceImpl(code, models, template).generateCode()
+	
+
+	DaoInterface(code, models, getInterfaceImpl(template)).generateCode()
+
+def main():
+	generateCode('dao_impl_template.json')
+	generateCode('service_impl_template.json')
+
+	
 	
 
 
