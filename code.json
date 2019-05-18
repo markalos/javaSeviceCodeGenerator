@@ -3,22 +3,15 @@
 	"entity" : {
 		"name" : "actionUrl",
 		"fields" : {
-			"idDomainId" : {
-				"type" : "ObjectId",
-				"refed" : ["response"]
+			"ObjectId idDomainId" : {		
 			},
-			"link" : {
-				"type" : "String",
+			"String link" : {
 				"refed" : ["actionUrlResponse"]
-			},
-			"code" : {
-				"type" : "Integer",
-				"refed" : ["response"]
 			}
 		}
 	},
 	"methods": {
-		"get" : ["idDomainId", "response"],
+		"get" : ["idDomainId", "actionUrlResponse"],
 		"delete" : ["idDomainId"],
 		"update" : [{
 			"query" : "idDomainId"

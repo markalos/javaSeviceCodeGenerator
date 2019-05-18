@@ -24,7 +24,8 @@ class ModelGenerator(BaseGenerator):
 
 		modelFields = []
 		for key in entityFields.keys():
-			modelFields.append({'name' : key, 'type' : entityFields[key]['type']})
+			ftype, fname = key.split(' ')
+			modelFields.append({'name' : fname, 'type' : ftype})
 
 		allFields = modelFields
 
@@ -32,14 +33,19 @@ class ModelGenerator(BaseGenerator):
 
 		modelNames = set()
 		for key in entityFields.keys():
+			if 'refed' not in entityFields[key]:
+				continue
 			names = entityFields[key]['refed']
 			modelNames.update(names)
 
 		for name in modelNames:
 			modelFields = []
-			for key in entityFields.keys():
-				if name in entityFields[key]['refed']:
-					modelFields.append({'name' : key, 'type' : entityFields[key]['type']})
+			for key, value in entityFields.items():
+				if 'refed' not in value:
+					continue
+				if name in value['refed']:
+					ftype, fname = key.split(' ')
+					modelFields.append({'name' : fname, 'type' : ftype})
 			models.append({
 							'name' : name,
 							'fields' : modelFields
